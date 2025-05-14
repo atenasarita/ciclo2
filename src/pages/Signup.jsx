@@ -35,9 +35,28 @@ export default function Signup() {
     setFormData(prev => ({ ...prev, [id]: value }));
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const { name, surname1, surname2, username, email, password, confirmPassword } = formData;
+    const response = await fetch("http://localhost:3001/signup", {
+      method:"POST",
+      headers:{
+        "Content-Type": "application/json",
+        
+      },
+      body: JSON.stringify({ name, surname1, surname2}), //enviamos todo 
+
+    })
+
+    const data = await response.json();
+    console.log("Respuesta del backend:", data.message);
+
+    if (response.ok) {
+      alert(data.message);
+      navigate('/sessionstarted');
+    } else {
+      setError(data.message); //error
+    }
     if (!name || !surname1 || !surname2 || !username || !email || !password || !confirmPassword) {
       setError('Please fill in all fields.');
     } else if (password !== confirmPassword) {
