@@ -34,17 +34,30 @@ export default function Login() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const { username, password } = formData;
-
-    if (!username || !password) {
-      setError('Please fill in all fields.');
-    } else {
-      setError('');
-      alert('Login successful!');
+    console.log("Email enviado al backend:", username);
+  
+    const response = await fetch("http://localhost:3001/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }), 
+    });
+  
+    const data = await response.json(); 
+  
+    
+    console.log("Respuesta del backend:", data.message);
+    if (response.ok) {
+      alert(data.message); 
       navigate('/sessionstarted');
+    } else {
+      setError(data.message); 
     }
+
   };
 
   return (
