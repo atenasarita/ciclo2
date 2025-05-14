@@ -1,0 +1,75 @@
+.admin-page {
+    background-color: #0f0f0f;
+    color: #f1f1f2;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    font-family: signatureRegular;
+    background-image: url('https://cdn.motor1.com/images/mgl/g4MJo9/s1/2025-kia-k4-teaser.webp');
+    background-size: cover;
+  }
+  
+.admin-container {
+    max-width: 700px;
+    width: 100%;
+}
+  
+.header-container {
+  margin: 80px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header-container h1{
+  color: white;
+}
+  
+.approval-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+  
+  .approval-card {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .user-info p {
+    margin: 5px 0;
+  }
+  
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .actions button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+  
+  .actions .approve {
+    background-color: #2ecc71;
+    color: #0f0f0f;
+  }
+  
+  .actions .reject {
+    background-color: #e74c3c;
+    color: #f1f1f2;
+  }
+  
+  .actions button:hover {
+    opacity: 0.8;
+  }
+  

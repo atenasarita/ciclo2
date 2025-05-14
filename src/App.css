@@ -1,0 +1,83 @@
+/* Tablets */
+@media (max-width: 768px) {
+    .navbar {
+        width: 140px;
+        height: auto;
+        top: 30%;
+        left: 20px;
+        padding: 20px 10px;
+    }
+
+    .navbar a {
+        font-size: 16px;
+        padding: 6px 10px;
+    }
+
+    .account-icon {
+        width: 40px;
+        height: 40px;
+        top: 15px;
+        left: 15px;
+    }
+
+    .content img {
+        width: 180px;
+        margin-bottom: 50px;
+    }
+
+    .subheader {
+        font-size: 30px;
+    }
+
+    .greeting {
+        font-size: 16px;
+    }
+
+    .content button {
+        font-size: 16px;
+        width: 15rem;
+        height: 3rem;
+    }
+}
+
+/* Phones */
+@media (max-width: 480px) {
+    .navbar {
+        width: 120px;
+        height: auto;
+        top: 20%;
+        left: 10px;
+        padding: 15px 8px;
+    }
+
+    .navbar a {
+        font-size: 14px;
+        padding: 5px 8px;
+    }
+
+    .account-icon {
+        width: 35px;
+        height: 35px;
+        top: 10px;
+        left: 10px;
+    }
+
+    .content img {
+        width: 140px;
+        margin-bottom: 40px;
+    }
+
+    .subheader {
+        font-size: 24px;
+    }
+
+    .greeting {
+        font-size: 14px;
+    }
+
+    .content button {
+        font-size: 14px;
+        width: 12rem;
+        height: 2.8rem;
+    }
+}

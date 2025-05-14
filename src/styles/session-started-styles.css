@@ -1,0 +1,184 @@
+/* General screen styling */
+.session-started-screen {
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: system-ui;
+    color: white;
+  }
+  
+  /* Background video */
+  .session-started-video {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+  
+  /* Navbar */
+  .session-started-navbar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 100;
+  }
+  
+  .session-started-navbar-logo {
+    height: 40px;
+  }
+  
+  .session-started-nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .session-started-nav-links li a {
+    text-decoration: none;
+    color: #f1f5f9;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  
+  .session-started-nav-links li a:hover {
+    color: #7dd3fc;
+  }
+  
+  /* Hero Section */
+  .session-started-content {
+    text-align: center;
+    margin-top: 8rem;
+    padding: 4rem 2rem 2rem;
+  }
+  
+  .session-started-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  
+  .session-started-content p {
+    font-size: 1.2rem;
+    color: #ffffff;
+  }
+  
+  /* Shortcut Cards */
+  .session-started-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .session-started-card.shortcut {
+    background: rgba(255, 255, 255, 0);
+    border: 2px solid rgba(255, 255, 255, 0.21);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    width: 260px;
+    text-align: left;
+    transition: transform 0.3s, box-shadow 0.3s;
+    backdrop-filter: blur(8px);
+    text-decoration: none;
+    color: white;
+  }
+  
+  .session-started-card.shortcut:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  }
+  
+  .session-started-card.shortcut h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .session-started-card.shortcut p {
+    font-size: 0.95rem;
+    color: #ffffff;
+  }
+  
+  /* Dashboard Section */
+  .dashboard-section {
+    margin-top: 4rem;
+    padding: 2rem 4rem;
+    background: rgba(0, 0, 0, 0.7);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .dashboard-section h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #ffffff;
+  }
+  
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+  
+  .kpi-widget {
+    background: rgba(255, 255, 255, 0);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    text-align: left;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+    transition: transform 0.3s;
+  }
+  
+  .kpi-widget:hover {
+    transform: scale(1.02);
+  }
+  
+  .kpi-widget h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #7dd3fc;
+  }
+  
+  .kpi-widget p {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  
+  .chart-placeholder {
+    width: 100%;
+    height: 180px;
+    background-color: #00000076;
+    border-radius: 0.75rem;
+    margin-top: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+  }
+  
+  @media (max-width: 768px) {
+    .session-started-cards {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .dashboard-section {
+      padding: 2rem;
+    }
+  
+    .session-started-navbar {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }

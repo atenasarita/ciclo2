@@ -1,0 +1,118 @@
+.account-page {
+    font-family: system-ui;
+    background: linear-gradient(to right, #0f172a, #1e293b);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    position: relative;
+  }
+  
+  .go-back-btn {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    width: 50px;
+    cursor: pointer;
+    z-index: 100;
+    transition: transform 0.3s ease;
+  }
+  .go-back-btn:hover {
+    transform: scale(1.1);
+  }
+  
+  .account-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 40px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  }
+  
+  .account-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #f8fafc;
+  }
+  
+  .account-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .account-form label {
+    font-weight: 500;
+    color: #cbd5e1;
+    margin-bottom: 6px;
+  }
+  
+  .account-form input {
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background-color: #f1f5f9;
+    color: #1e293b;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .account-form.editable input {
+    border: 2px solid #38bdf8;
+    background-color: #fff;
+  }
+  
+  .account-form.editable input:focus {
+    outline: none;
+    border-color: #0ea5e9;
+  }
+  
+  .btn {
+    margin-top: 10px;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 10px;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .edit-btn {
+    background-color: #334155;
+    color: #f1f5f9;
+  }
+  .edit-btn:hover {
+    background-color: #475569;
+  }
+  
+  .save-btn {
+    background-color: #38bdf8;
+    color: white;
+  }
+  .save-btn:hover {
+    background-color: #0ea5e9;
+  }
+  
+  #logout-btn {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 10px;
+    background-color: transparent;
+    border: 2px solid #f1f5f9;
+    color: #f1f5f9;
+    width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  #logout-btn:hover {
+    background-color: #f1f5f9;
+    color: #0f172a;
+  }  
