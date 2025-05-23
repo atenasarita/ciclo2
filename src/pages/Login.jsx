@@ -51,8 +51,9 @@ export default function Login() {
   
     
     console.log("Respuesta del backend:", data.message);
-    if (response.ok) {
-      alert(data.message); 
+    if (data.token) {
+      localStorage.setItem('token', data.token);//preguntar si esta bien guardar el token en el localstorage
+      console.log("Token guardado:", data.token); 
       navigate('/sessionstarted');
     } else {
       setError(data.message); 
