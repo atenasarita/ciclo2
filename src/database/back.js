@@ -187,7 +187,7 @@ app.post('/request-reset', async (req, res) => {
     // Genera una OTP de 6 dígitos
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
-    // Guarda la OTP temporalmente (puedes usar una tabla password_resets)
+    // Guarda la OTP temporalmente 
     await pool.query(`
       INSERT INTO password_resets (correo, otp, created_at)
       VALUES ($1, $2, NOW())
@@ -195,7 +195,7 @@ app.post('/request-reset', async (req, res) => {
       DO UPDATE SET otp = EXCLUDED.otp, created_at = EXCLUDED.created_at
     `, [correo, otp]);
 
-    // Enviar la OTP al correo (aquí puedes usar nodemailer)
+    // Enviar la OTP al correo 
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: correo.trim(),
@@ -233,7 +233,7 @@ app.post('/verify-otp', async (req, res) => {
       return res.status(401).json({ error: 'Wrong OTP. Please verify or try again later.' });
     }
 
-    // Validar si la OTP ha expirado (ej. 10 minutos de validez)
+    // Validar si la OTP ha expirado (10 mins)
     const ahora = new Date();
     const creada = new Date(created_at);
     const diferenciaMin = (ahora - creada) / 1000 / 60;
@@ -241,9 +241,6 @@ app.post('/verify-otp', async (req, res) => {
     if (diferenciaMin > 10) {
       return res.status(401).json({ error: 'OTP has expired' });
     }
-
-    // Opcional: borrar la OTP después de verificar
-    await pool.query(`DELETE FROM password_resets WHERE correo = $1`, [correo]);
 
     res.status(200).json({ message: 'OTP has been verified.' });
 
