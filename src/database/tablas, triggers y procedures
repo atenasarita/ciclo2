@@ -1,0 +1,109 @@
+CREATE TABLE empleados (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    primer_apellido VARCHAR(50) NOT NULL,
+    segundo_apellido VARCHAR(50),
+    correo VARCHAR(50) NOT NULL,
+    numero_empleado VARCHAR(8) CHECK (numero_empleado ~ '^\d{8}$') NOT NULL,
+    contraseña VARCHAR(60) NOT NULL,
+    es_admin BOOLEAN NOT NULL DEFAULT FALSE,
+    approved BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+-- procedure para agregar empleado
+CREATE OR REPLACE PROCEDURE insert_empleado(
+    e_nombre VARCHAR,
+    e_primerApellido VARCHAR,
+    e_segundoApellido VARCHAR,
+    e_correo VARCHAR,
+    e_numero VARCHAR,
+    e_contraseña VARCHAR
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+        INSERT INTO empleados (nombre,
+                               primer_apellido,
+                               segundo_apellido,
+                               correo,
+                               numero_empleado,
+                               contraseña)
+        VALUES (e_nombre,
+                e_primerApellido,
+                e_segundoApellido,
+                e_correo,
+                e_numero,
+                e_contraseña);
+END;
+$$;
+
+-- revisa que los emails no se repitan entonces la function del trigger verifica eso
+CREATE OR REPLACE FUNCTION validar_campos_unicos()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    -- Validar número único
+    IF EXISTS (SELECT 1 FROM empleados WHERE numero_empleado = NEW.numero_empleado) THEN
+        RAISE EXCEPTION 'El número % ya existe', NEW.numero_empleado
+        USING ERRCODE = 'P2001';
+    END IF;
+
+    -- Validar email único
+    IF EXISTS (SELECT 1 FROM empleados WHERE correo = NEW.correo) THEN
+        RAISE EXCEPTION 'El email % ya está en uso', NEW.correo
+        USING ERRCODE = 'P2002';
+    END IF;
+
+    RETURN NEW;
+END;
+$$;
+
+CREATE TRIGGER trigger_validar_numero
+    BEFORE INSERT ON empleados
+    FOR EACH ROW
+    EXECUTE FUNCTION validar_campos_unicos();
+
+create or replace procedure approve_empleado(IN target_id integer)
+    language plpgsql
+as
+$$
+    BEGIN
+
+        UPDATE empleados SET approved = 'true' WHERE empleados.id = target_id;
+
+    END;
+$$;
+
+create or replace procedure reject_empleado(
+    IN target_id INT
+) language plpgsql
+as
+    $$
+    begin
+        delete from empleados where empleados.id = target_id;
+    end;
+    $$
+
+CREATE TABLE password_resets
+(
+    correo      TEXT PRIMARY KEY,
+    otp        TEXT      NOT NULL,
+    created_at TIMESTAMP NOT NULL
+);
+
+CREATE OR REPLACE FUNCTION eliminar_otp()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  DELETE FROM password_resets WHERE correo = OLD.correo;
+  RETURN NEW;
+END;
+$$;
+
+CREATE TRIGGER trigger_eliminar_otp
+AFTER UPDATE ON empleados
+FOR EACH ROW
+WHEN (OLD.contraseña IS DISTINCT FROM NEW.contraseña)
+EXECUTE FUNCTION eliminar_otp();
